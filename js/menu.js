@@ -37,7 +37,7 @@
         title: "Drinks",
         items: [
           { name: "Fountain Soda", description: " ", sizes: [{ size: " ", price: "$3.25" }] },
-          { name: "Iced Tea", description: "Strawberry, Peach, Mango", sizes: [{ size: "Sweet or Unsweetened", price: "$3.00" }, { size: "Add a flavor", price: "$0.75" }] },
+          { name: "Iced Tea", description: "Strawberry, Peach, Mango", sizes: [{ size: "Sweet", price: "$3.00" }, { size: "Unsweetened", price: "$3.00" }, { size: "Add a flavor", price: "$0.75" }] },
           { name: "Frozen Frappe", description: "Mocha, Vanilla, Caramel", sizes: [{ size: "16 oz", price: "$5.75" }, { size: "24 oz", price: "$6.75" }] },
           { name: "Fruit Smoothie", description: "Strawberry Banana, Peach, Mango, Strawberry, Pina Colada", sizes: [{ size: "16 oz", price: "$5.75" }, { size: "24 oz", price: "$6.75" }] },
           { name: "Hot Coffee", description: " ", sizes: [{ size: "12 oz", price: "$3.00" }, { size: "16 oz", price: "$3.50" }] },
@@ -68,9 +68,7 @@
         items: [
           { name: "Tampa Cuban", description: "Slow roasted mojo pork, ham, cheese, salami, pickles, and our Cuban sauce pressed perfectly inside fresh baked La Segunda bread", sizes: [{ size: " ", price: "$8.50" }] },
           { name: "Cuban Godfather", description: "Italian cured meats, provolone cheese, tomato,onion, mayo, and sub sauce on La Segunda bread, pressed with garlic butter", sizes: [{ size: " ", price: "$8.50" }] },
-          { name: "Half Cuban with Fries", description: "Half of one of our favorite Cubans and dipper fries", sizes: [{ size: " ", price: "$8.95" }] },
-          { name: "Soup of the Day", description: "Ask us what is simmering today.", sizes: [{ size: "Small", price: "$1.00" }, { size: "Medium", price: "$1.00" }, { size: "Large", price: "$1.00" }] },
-          { name: "Lunch Sandwich", description: "A café-style sandwich served fresh.", sizes: [{ size: "Small", price: "$1.00" }, { size: "Medium", price: "$1.00" }, { size: "Large", price: "$1.00" }] }
+          { name: "Half Cuban with Fries", description: "Half of one of our favorite Cubans and dipper fries", sizes: [{ size: " ", price: "$8.95" }] }
         ]
       }
     };
