@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#e6bb52">
+  <link rel="stylesheet" href="css/bistro.css">
+  <title>Bobcat Bistro Menu</title>
+</head>
+<body>
+  <main class="bistro-menu">
+    <header class="hero">
+      <p class="eyebrow">Monday-Friday 8 a.m. to 3 p.m.</p>
+      <h1>Bobcat Bistro</h1>
+      <p class="hero-copy">Operated by Havana Dreamers at the West Campus</p>
+    </header>
+
+    <section class="hours-card" aria-labelledby="hours-heading">
+      <div class="section-heading">
+        <h2 id="hours-heading">Hours</h2>
+      </div>
+      <div class="hours-grid">
+        <div class="hours-row"><span class="hours-label">Breakfast</span><span class="hours-time">8 a.m. – 11 a.m.</span></div>
+        <div class="hours-row"><span class="hours-label">Lunch</span><span class="hours-time">11 a.m. – 3 p.m.</span></div>
+        <div class="hours-row"><span class="hours-label">Thanksgiving · Nov 23-27</span><span class="hours-time">Closed</span></div>
+      </div>
+    </section>
+
+    <section class="specials-card" aria-labelledby="specials-heading">
+      <div class="section-heading">
+        <h2 id="specials-heading">Weekly Specials</h2>
+      </div>
+      <div class="week-navigation" aria-label="Calendar navigation">
+        <button type="button" class="nav-button" id="previous-week" aria-label="Previous week">&larr;</button>
+        <button type="button" class="today-button" id="today-week">Today</button>
+        <span class="week-label" id="week-label" aria-live="polite"></span>
+        <button type="button" class="nav-button" id="next-week" aria-label="Next week">&rarr;</button>
+      </div>
+      <div class="calendar-grid" id="calendar-grid" aria-label="Monday to Friday specials"></div>
+      <div class="daily-special" id="daily-special" aria-live="polite">
+        <p class="special-date" id="special-date"></p>
+        <h3 id="special-title"></h3>
+        <p id="special-description"></p>
+      </div>
+    </section>
+
+    <section class="menu-card" aria-labelledby="menu-heading">
+      <div class="section-heading">
+        <h2 id="menu-heading">Browse the Menu</h2>
+        <p> </p>
+      </div>
+      <div class="category-tabs" role="tablist" aria-label="Menu categories">
+        <button class="category-tab" id="tab-drinks" type="button" role="tab" aria-selected="true" aria-controls="menu-panel" data-category="drinks">Drinks</button>
+        <button class="category-tab" id="tab-breakfast" type="button" role="tab" aria-selected="false" aria-controls="menu-panel" data-category="breakfast">Breakfast</button>
+        <button class="category-tab" id="tab-lunch" type="button" role="tab" aria-selected="false" aria-controls="menu-panel" data-category="lunch">Lunch</button>
+      </div>
+      <div id="menu-panel" role="tabpanel" aria-labelledby="tab-coffee" tabindex="0">
+        <h3 class="menu-category-title" id="menu-category-title">Coffee</h3>
+        <div class="menu-items" id="menu-items"></div>
+      </div>
+      <p class="menu-note"></p>
+    </section>
+    <footer><p>Bobcat Bistro 10230 Ridge Road New Port Richey, FL 34654 727-847-2727</p></footer>
+  </main>
+  <script type="text/javascript" src="js/menu.js" ></script>
+</body>
+</html>
