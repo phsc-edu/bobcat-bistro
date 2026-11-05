@@ -1,5 +1,6 @@
     // Add or edit specials by month (YYYY-MM), then by day of the month (1–31).
-    // Each special has a short title and a description.
+    // A day may contain one special object or an array of multiple specials.
+    // Example: 5: [{ title: "Special one", description: "Details" }, { title: "Special two", description: "Details" }]
     const monthlySpecials = {
       "2026-10": {
         29: { title: "Meatloaf with Mashed Potatoes and Gravy", description: " " },
@@ -9,7 +10,10 @@
         2: { title: "Taco Bar", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
         3: { title: "Teriyaki Chicken and White Rice", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
         4: { title: "Wing Wednesday", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
-        5: { title: "Turkey Bacon Ranch Wrap", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
+        5: [
+          { title: "Turkey Bacon Ranch Wrap", description: "" },
+          { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
+        ],
         6: { title: "Pasta Bar", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
         9: { title: "Curry Chicken and White Rice", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
         10: { title: "Baked Potato Bar", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
@@ -81,9 +85,12 @@
           { name: "Chicken Caesar Wrap", description: "All the bold, zesty flavors of a classic Caesar salad, tucked into a soft, fresh tortilla for the perfect handheld bite", sizes: [{ size: "Cold", price: "$7.75" }, { size: "Grilled", price: "$7.75" }] },
           { name: "Turkey Sandwich", description: "Sliced turkey breast, cheese, lettuce, and tomato", sizes: [{ size: "Wrap", price: "$7.50" }, { size: "Croissant", price: "$7.50" }] },
           { name: "Roast Pork Meal", description: "Our family's slow roasted mojo pork with black beans, yellow rice, and a side of cuban toast", sizes: [{ size: "", price: "$10.50" }] },
-          { name: "Black Beans and Yellow Rice", description: "Our classic cuban black beans and yellow rice", sizes: [{ size: "", price: "$4.00" }] },
           { name: "Assorted Empanadas", description: " ", sizes: [{ size: "", price: "$3.75" }] },
           { name: "Chicken Tenders with Fries", description: "Served with BBQ sauce or ranch dressing and a side of our dipper fries ", sizes: [{ size: "", price: "$8.95" }] },
+
+        ],
+        sides: [
+          { name: "Black Beans and Yellow Rice", description: "Our classic cuban black beans and yellow rice", sizes: [{ size: "", price: "$4.00" }] },
           { name: "Dipper Fries", description: "Served with BBQ sauce or ranch dressing and a side of our dipper fries", sizes: [{ size: "", price: "$3.95" }] },
           { name: "Mozzarella Sticks", description: "Fried golden brown with a side of Marinara", sizes: [{ size: "", price: "$8.75" }] },
           { name: "Jalapeno Poppers", description: " ", sizes: [{ size: "", price: "$8.75" }] },
@@ -120,33 +127,47 @@
     function formatDate(date, options = { month: "short", day: "numeric" }) {
       return date.toLocaleDateString("en-US", options);
     }
-    function specialFor(date) {
-      return monthlySpecials[dateKey(date)]?.[date.getDate()] || {
-        title: "No special listed yet",
-        description: "Check back soon, or ask our team what is featured today."
-      };
+    function specialsFor(date) {
+      const entry = monthlySpecials[dateKey(date)]?.[date.getDate()];
+      if (!entry) return [];
+      return (Array.isArray(entry) ? entry : [entry]).filter(item => item && item.title);
     }
     function renderCalendar() {
       const grid = document.getElementById("calendar-grid");
       const weekEnd = addDays(weekStart, 4);
-      const sameMonth = weekStart.getMonth() === weekEnd.getMonth() && weekStart.getFullYear() === weekEnd.getFullYear();
-      document.getElementById("week-label").textContent = sameMonth
-        ? `${formatDate(weekStart, { month: "short", day: "numeric" })} – ${formatDate(weekEnd, { month: "short", day: "numeric", year: "numeric" })}`
-        : `${formatDate(weekStart, { month: "short", day: "numeric" })} – ${formatDate(weekEnd, { month: "short", day: "numeric", year: "numeric" })}`;
+      document.getElementById("week-label").textContent =
+        `${formatDate(weekStart, { month: "short", day: "numeric" })} – ${formatDate(weekEnd, { month: "short", day: "numeric", year: "numeric" })}`;
       grid.replaceChildren();
       const dayNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
       for (let i = 0; i < 5; i++) {
         const date = addDays(weekStart, i);
-        const special = specialFor(date);
+        const specials = specialsFor(date);
         const isToday = date.getTime() === today.getTime();
         const isSelected = date.getTime() === selectedDate.getTime();
         const button = document.createElement("button");
         button.type = "button";
         button.className = "day-card" + (isToday ? " today" : "") + (isSelected ? " selected" : "");
         button.setAttribute("aria-pressed", String(isSelected));
-        button.setAttribute("aria-label", `${dayNames[i]}, ${formatDate(date, { month: "long", day: "numeric" })}: ${special.title}${isToday ? ", today" : ""}`);
-        button.innerHTML = `<span class="day-name">${dayNames[i].slice(0, 3)}</span><span class="day-number">${date.getDate()}</span><span class="day-special"></span>`;
-        button.querySelector(".day-special").textContent = special.title;
+        button.setAttribute("aria-label", `${dayNames[i]}, ${formatDate(date, { month: "long", day: "numeric" })}: ${specials.length ? specials.map(item => item.title).join(", ") : "No specials listed"}${isToday ? ", today" : ""}`);
+        const dayName = document.createElement("span");
+        dayName.className = "day-name";
+        dayName.textContent = dayNames[i].slice(0, 3);
+        const dayNumber = document.createElement("span");
+        dayNumber.className = "day-number";
+        dayNumber.textContent = date.getDate();
+        const daySpecials = document.createElement("span");
+        daySpecials.className = "day-special";
+        if (specials.length) {
+          specials.forEach(item => {
+            const title = document.createElement("span");
+            title.className = "day-special-item";
+            title.textContent = item.title;
+            daySpecials.appendChild(title);
+          });
+        } else {
+          daySpecials.textContent = "No special listed";
+        }
+        button.append(dayName, dayNumber, daySpecials);
         button.addEventListener("click", () => {
           selectedDate = localDate(date);
           renderCalendar();
@@ -155,12 +176,66 @@
         grid.appendChild(button);
       }
     }
+    // On small screens, show only today's and tomorrow's specials, including every item.
+    function renderMobileSpecials() {
+      const container = document.getElementById("mobile-specials");
+      container.replaceChildren();
+      [0, 1].forEach(offset => {
+        const date = addDays(localDate(new Date()), offset);
+        const section = document.createElement("section");
+        section.className = "mobile-special-day" + (offset === 0 ? " mobile-today" : "");
+        const heading = document.createElement("h3");
+        heading.textContent = `${offset === 0 ? "Today's Specials" : "Tomorrow's Specials"} · ${formatDate(date, { weekday: "short", month: "short", day: "numeric" })}`;
+        section.appendChild(heading);
+        const specials = specialsFor(date);
+        if (!specials.length) {
+          const message = document.createElement("p");
+          message.textContent = "No specials listed.";
+          section.appendChild(message);
+        } else {
+          specials.forEach(item => {
+            const article = document.createElement("article");
+            article.className = "special-item";
+            const title = document.createElement("h4");
+            title.textContent = item.title;
+            article.appendChild(title);
+            if (item.description && item.description.trim()) {
+              const description = document.createElement("p");
+              description.textContent = item.description;
+              article.appendChild(description);
+            }
+            section.appendChild(article);
+          });
+        }
+        container.appendChild(section);
+      });
+    }
     function renderSpecial() {
-      const special = specialFor(selectedDate);
+      const specials = specialsFor(selectedDate);
       const isToday = selectedDate.getTime() === today.getTime();
-      document.getElementById("special-date").textContent = `${formatDate(selectedDate, { weekday: "long", month: "long", day: "numeric", year: "numeric" })}${isToday ? " · Today" : ""}`;
-      document.getElementById("special-title").textContent = special.title;
-      document.getElementById("special-description").textContent = special.description;
+      document.getElementById("special-date").textContent =
+        `${formatDate(selectedDate, { weekday: "long", month: "long", day: "numeric", year: "numeric" })}${isToday ? " · Today" : ""}`;
+      const list = document.getElementById("specials-list");
+      list.replaceChildren();
+      if (!specials.length) {
+        const empty = document.createElement("p");
+        empty.textContent = "No special listed yet. Check back soon, or ask our team what is featured today.";
+        list.appendChild(empty);
+        return;
+      }
+      specials.forEach(item => {
+        const article = document.createElement("article");
+        article.className = "special-item";
+        const heading = document.createElement("h3");
+        heading.textContent = item.title;
+        article.appendChild(heading);
+        if (item.description && item.description.trim()) {
+          const description = document.createElement("p");
+          description.textContent = item.description;
+          article.appendChild(description);
+        }
+        list.appendChild(article);
+      });
     }
     function changeWeek(amount) {
       weekStart = addDays(weekStart, amount * 7);
@@ -168,6 +243,21 @@
       renderCalendar();
       renderSpecial();
     }
+    const browseButton = document.getElementById("browse-specials");
+    const specialsBrowser = document.getElementById("specials-browser");
+    browseButton.addEventListener("click", () => {
+      const opening = !specialsBrowser.classList.contains("is-open");
+      specialsBrowser.classList.toggle("is-open", opening);
+      browseButton.setAttribute("aria-expanded", String(opening));
+      browseButton.textContent = opening ? "Hide full calendar" : "Browse all specials";
+      if (opening) {
+        // Open on the current week, with today's specials selected.
+        weekStart = mondayOfWeek(today);
+        selectedDate = localDate(today);
+        renderCalendar();
+        renderSpecial();
+      }
+    });
     document.getElementById("previous-week").addEventListener("click", () => changeWeek(-1));
     document.getElementById("next-week").addEventListener("click", () => changeWeek(1));
     document.getElementById("today-week").addEventListener("click", () => {
@@ -186,7 +276,8 @@
       panel.setAttribute("aria-labelledby", `tab-${category}`);
       const list = document.getElementById("menu-items");
       list.replaceChildren();
-      data.items.forEach(item => {
+      function appendMenuItems(items, container) {
+      items.forEach(item => {
         const row = document.createElement("div");
         row.className = "menu-item";
         const detail = document.createElement("div");
@@ -196,18 +287,37 @@
         const description = document.createElement("p");
         description.className = "item-description";
         description.textContent = item.description;
+        detail.className = "item-detail";
         detail.append(name, description);
         const prices = document.createElement("div");
         prices.className = "item-prices";
         item.sizes.forEach(option => {
           const sizePrice = document.createElement("div");
           sizePrice.className = "item-price";
-          sizePrice.textContent = `${option.size} ㅤ  ${option.price}`;
+          const sizeLabel = document.createElement("span");
+          sizeLabel.className = "item-size";
+          sizeLabel.textContent = option.size.trim();
+          const amount = document.createElement("span");
+          amount.className = "item-amount";
+          amount.textContent = option.price;
+          sizePrice.append(sizeLabel, amount);
           prices.appendChild(sizePrice);
         });
         row.append(detail, prices);
-        list.appendChild(row);
+        container.appendChild(row);
       });
+      }
+      appendMenuItems(data.items, list);
+      if (category === "lunch" && data.sides && data.sides.length) {
+        const heading = document.createElement("h4");
+        heading.className = "menu-subsection-title";
+        heading.textContent = "Sides";
+        list.appendChild(heading);
+        const sidesList = document.createElement("div");
+        sidesList.className = "menu-items menu-sides";
+        list.appendChild(sidesList);
+        appendMenuItems(data.sides, sidesList);
+      }
       document.querySelectorAll(".category-tab").forEach(tab => {
         const selected = tab.dataset.category === category;
         tab.setAttribute("aria-selected", String(selected));
@@ -231,4 +341,5 @@
 
     renderCalendar();
     renderSpecial();
+    renderMobileSpecials();
     renderMenu(activeCategory);

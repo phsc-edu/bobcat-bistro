@@ -31,6 +31,9 @@
       <div class="section-heading">
         <h2 id="specials-heading">Weekly Specials</h2>
       </div>
+      <div class="mobile-specials" id="mobile-specials" aria-label="Today and tomorrow specials"></div>
+      <button type="button" class="browse-specials-button" id="browse-specials" aria-expanded="false" aria-controls="specials-browser">Browse all specials</button>
+      <div id="specials-browser" class="specials-browser">
       <div class="week-navigation" aria-label="Calendar navigation">
         <button type="button" class="nav-button" id="previous-week" aria-label="Previous week">&larr;</button>
         <button type="button" class="today-button" id="today-week">Today</button>
@@ -40,8 +43,8 @@
       <div class="calendar-grid" id="calendar-grid" aria-label="Monday to Friday specials"></div>
       <div class="daily-special" id="daily-special" aria-live="polite">
         <p class="special-date" id="special-date"></p>
-        <h3 id="special-title"></h3>
-        <p id="special-description"></p>
+        <div class="specials-list" id="specials-list" aria-label="Specials for selected day"></div>
+      </div>
       </div>
     </section>
 
@@ -55,8 +58,9 @@
         <button class="category-tab" id="tab-breakfast" type="button" role="tab" aria-selected="false" aria-controls="menu-panel" data-category="breakfast">Breakfast</button>
         <button class="category-tab" id="tab-lunch" type="button" role="tab" aria-selected="false" aria-controls="menu-panel" data-category="lunch">Lunch</button>
       </div>
-      <div id="menu-panel" role="tabpanel" aria-labelledby="tab-coffee" tabindex="0">
+      <div id="menu-panel" role="tabpanel" aria-labelledby="tab-drinks" tabindex="0">
         <h3 class="menu-category-title" id="menu-category-title">Coffee</h3>
+        <!-- Lunch entrees and the separate Sides section are rendered here by menu.js. -->
         <div class="menu-items" id="menu-items"></div>
       </div>
       <p class="menu-note"></p>
