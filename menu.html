@@ -10,9 +10,9 @@
   <meta http-equiv="Expires" content="0">
 
   <!-- Add version numbers to prevent caching -->
-  <link rel="stylesheet" href="css/bistro.css?v=2">
+  <link rel="stylesheet" href="css/bistro.css?v=7">
   <link rel="icon" type="image/png" href="images/favicon.ico?v=1">
-  <script src="js/menu.js?v=2" defer></script>
+  <script src="js/menu.js?v=7" defer></script>
 
   <!-- PHSC Gold -->
   <meta name="theme-color" content="#e6bb52">
@@ -69,9 +69,10 @@
         <button class="category-tab" id="tab-breakfast" type="button" role="tab" aria-selected="false" aria-controls="menu-panel" data-category="breakfast">Breakfast</button>
         <button class="category-tab" id="tab-lunch" type="button" role="tab" aria-selected="false" aria-controls="menu-panel" data-category="lunch">Lunch</button>
       </div>
+      <p class="menu-callout" id="menu-callout" aria-live="polite"></p>
       <div id="menu-panel" role="tabpanel" aria-labelledby="tab-drinks" tabindex="0">
         <h3 class="menu-category-title" id="menu-category-title">Coffee</h3>
-        <!-- Lunch entrees and the separate Sides section are rendered here by menu.js. -->
+        <!-- Lunch entrees, Salads, and Sides are rendered here by menu.js. -->
         <div class="menu-items" id="menu-items"></div>
       </div>
       <p class="menu-note"></p>

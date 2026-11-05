@@ -1,3 +1,6 @@
+/* Important! */
+/* Update menu.html css version everytime this file is updated. */
+
 @font-face { 
   font-family: SohoStd-Heavy; 
   src: url('../fonts/SohoStd-Heavy/SohoStd-Heavy.otf'); 
@@ -33,7 +36,7 @@ body {
   margin: 0;
   background: var(--black);
   color: var(--ink);
-  font-family: "Ariel", sans-serif;
+  font-family: "Arial", sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -318,3 +321,69 @@ h1 {
 .menu-subsection-title { margin: 24px 0 8px; padding: 12px 0 8px; border-top: 2px solid var(--gold-dark); font-size: 1.15rem; font-weight: 800; }
 .menu-sides { min-width: 0; }
 @media (max-width: 600px) { .menu-subsection-title { margin-top: 18px; } }
+
+/* Category-specific callout, shown directly below the menu tabs. */
+.menu-callout {
+  margin: 12px 0 16px;
+  padding: 10px 13px;
+  border-left: 4px solid #b58c29;
+  border-radius: 5px;
+  background: #fff3d6;
+  color: #302712;
+  font-weight: 600;
+  line-height: 1.45;
+}
+/* Compact, readable breakfast sandwich choices. */
+.sandwich-options {
+  background-color: #fff3d6;
+  padding: 5px 12px;
+  margin-top: 7px;
+  border-radius: 6px;
+  color: #302712;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.sandwich-options .option-row { padding: 5px 0; border-bottom: 1px solid #dccba4; }
+.sandwich-options .option-row:last-child { border-bottom: none; }
+.sandwich-options strong { font-weight: 700; color: #302712; }
+.menu-salads { min-width: 0; }
+
+/* No divider beneath the Hot Dog in the Lunch menu. */
+.menu-item.hot-dog-item { border-bottom: none; }
+
+/* Subtle menu options below the title and above the description. */
+.menu-options {
+  background: #fff3d6;
+  color: #302712;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin: 4px 0 6px;
+}
+.menu-options .option-row { font-weight: 400; }
+.menu-options strong, .menu-options b { font-weight: 400; }
+/* Menu callouts use regular-weight text in all categories. */
+.menu-callout, .menu-callout strong, .menu-callout b { font-weight: 400; }
+
+/* Readability fix: keep menu item names and prices high-contrast. */
+.menu-item .item-name,
+.menu-item .item-price,
+.menu-item .item-prices,
+.menu-item .price {
+  color: #242424;
+  font-weight: 700;
+}
+.menu-item .item-description,
+.menu-item .description {
+  color: #444444;
+}
+/* Preserve regular-weight options and menu callouts. */
+.menu-options, .menu-options strong, .menu-options b,
+.menu-callout, .menu-callout strong, .menu-callout b {
+  font-weight: 400;
+}
+
+/* Hide blank callouts, including their padding and margins. */
+.menu-callout[hidden], .menu-callout:empty { display: none; }

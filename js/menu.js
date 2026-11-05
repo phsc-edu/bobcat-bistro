@@ -1,3 +1,6 @@
+/* Important! */
+/* Update menu.html js version everytime this file is updated. */
+
     // Add or edit specials by month (YYYY-MM), then by day of the month (1–31).
     // A day may contain one special object or an array of multiple specials.
     // Example: 5: [{ title: "Special one", description: "Details" }, { title: "Special two", description: "Details" }]
@@ -7,24 +10,66 @@
         30: { title: "Taco Bar", description: " " }
       },
       "2026-11": {
-        2: { title: "Taco Bar", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
-        3: { title: "Teriyaki Chicken and White Rice", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
-        4: { title: "Wing Wednesday", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
+        2: [
+          { title: "Taco Bar", description: "" },
+          { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
+        ],
+        3: [
+          { title: "Teriyaki Chicken and White Rice", description: "" },
+          { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
+        ],
+        4: [
+          { title: "Wing Wednesday", description: "" },
+          { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
+        ],
         5: [
           { title: "Turkey Bacon Ranch Wrap", description: "" },
           { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
         ],
-        6: { title: "Pasta Bar", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
-        9: { title: "Curry Chicken and White Rice", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
-        10: { title: "Baked Potato Bar", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
-        11: { title: "Wing Wednesday", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
-        12: { title: "BBQ Pork and Baked Beans", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
-        13: { title: "Chicken Fajitas", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
-        16: { title: "Chicken Quesadillas", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
-        17: { title: "Chicken Rice Bowl", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
-        18: { title: "Wing Wednesday", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
-        19: { title: "Broccoli Cheese Soup and Salad", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
-        20: { title: "Chicken and Waffles", description: "Thanksgiving Cuban Sandwich available until Nov 20" },
+        6: [
+          { title: "Pasta Bar", description: "" },
+          { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
+        ],
+        9: [
+          { title: "Curry Chicken and White Rice", description: "" },
+          { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
+        ],
+        10: [
+          { title: "Baked Potato Bar", description: "" },
+          { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
+        ],
+        11: [
+          { title: "Wing Wednesday", description: "" },
+          { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
+        ],
+        12: [
+          { title: "BBQ Pork and Baked Beans", description: "" },
+          { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
+        ],
+        13: [
+          { title: "Chicken Fajitas", description: "" },
+          { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
+        ],
+        16: [
+          { title: "Chicken Quesadillas", description: "" },
+          { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
+        ],
+        17: [
+          { title: "Chicken Rice Bowl", description: "" },
+          { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
+        ],
+        18: [
+          { title: "Wing Wednesday", description: "" },
+          { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
+        ],
+        19: [
+          { title: "Broccoli Cheese Soup and Salad", description: "" },
+          { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
+        ],
+        20: [
+          { title: "Chicken and Waffles", description: "" },
+          { title: "Thanksgiving Cuban Sandwich", description: "Available until Nov 20" }
+        ],
         23: { title: "Closed for Thanksgiving", description: " " },
         24: { title: "Closed for Thanksgiving", description: " " },
         25: { title: "Closed for Thanksgiving", description: " " },
@@ -36,6 +81,12 @@
 
     // Menu content. Each item has Small, Medium, and Large size options.
     // Replace the $1.00 placeholder prices with your actual prices.
+    const menuCallouts = {
+      drinks: "",
+      breakfast: "",
+      lunch: "Ask about our soup of the day!"
+    };
+
     const menuData = {
       drinks: {
         title: "Drinks",
@@ -55,7 +106,7 @@
       breakfast: {
         title: "Breakfast",
         items: [
-          { name: "Build Your Own Breakfast Sandwich", description: "Your choice of Bread: Cuban Bread, Croissant, Bagel or Wrap Cheese: American, Swiss or Provolone Meat: Bacon, Sausage, or Ham", sizes: [{ size: " ", price: "$6.25" }, ] },
+          { name: "Build Your Own Breakfast Sandwich", description: "", choices: [{ label: "Bread", options: "Cuban Bread, Croissant, Bagel, or Wrap" }, { label: "Cheese", options: "American, Swiss, or Provolone" }, { label: "Meat", options: "Bacon, Sausage, or Ham" }], sizes: [{ size: " ", price: "$6.25" }, ] },
           { name: "Cuban Toast", description: "Fresh La Segunda Cuban Bread, spread with butter, pressed to perfection", sizes: [{ size: " ", price: "$3.00" }, { size: "Add cheese", price: "$0.75" }] },
           { name: "Churro Toast", description: "Our classic pressed cuban toast with cinnamon sugar", sizes: [{ size: "", price: "$3.50" }] },
           { name: "Grit Bowl", description: "Cheddar grits topped with scrambled eggs and a choice of bacon or sausage on top", sizes: [{ size: " ", price: "$5.75" }] },
@@ -70,26 +121,27 @@
       lunch: {
         title: "Lunch",
         items: [
+          { name: "Roast Pork Meal", description: "Our family's slow roasted mojo pork with black beans, yellow rice, and a side of cuban toast", sizes: [{ size: "", price: "$10.50" }] },
           { name: "Tampa Cuban", description: "Slow roasted mojo pork, ham, cheese, salami, pickles, and our Cuban sauce pressed perfectly inside fresh baked La Segunda bread", sizes: [{ size: " ", price: "$8.50" }] },
           { name: "Cuban Godfather", description: "Italian cured meats, provolone cheese, tomato,onion, mayo, and sub sauce on La Segunda bread, pressed with garlic butter", sizes: [{ size: " ", price: "$8.50" }] },
           { name: "Half Cuban with Fries", description: "Half of one of our favorite Cubans and dipper fries", sizes: [{ size: " ", price: "$8.95" }] },
-          { name: "Chicken Salad Sandwich", description: "Chicken salad made with pecans, crasins, onions, and a hint of hickory honey mustard finished with fresh lettuce and tomato", sizes: [{ size: "Wrap", price: "$7.75" },{ size: "Croissant ", price: "$7.75" }] },
           { name: "Cuban Grilled Cheese", description: "3 cheeses on La Segunda cuban bread pressed with garlic butter", sizes: [{ size: " ", price: "$7.00" }] },
-          { name: "Hot Dog", description: " ", sizes: [{ size: " ", price: "$3.50" }, { size: "With Fries ", price: "$6.50" }] },
-          { name: "Hamburger", description: " ", sizes: [{ size: " ", price: "$7.00" }, { size: "Add Cheese ", price: "$0.50" }, { size: "With Fries ", price: "$10.00" }] },
-          { name: "Turkey Burger", description: " ", sizes: [{ size: " ", price: "$8.00" }] },
+          { name: "Chicken Tenders with Fries", description: "Served with BBQ sauce or ranch dressing and a side of our dipper fries ", sizes: [{ size: "", price: "$8.95" }] },
+          { name: "Chicken Caesar Wrap", description: "All the bold, zesty flavors of a classic Caesar salad, tucked into a soft, fresh tortilla for the perfect handheld bite", choices: [{ label: "Options", options: "Cold or Grilled" }],sizes: [{ size: "", price: "$7.75" }] },
+          { name: "Chicken Salad Sandwich", description: "Chicken salad made with pecans, crasins, onions, and a hint of hickory honey mustard finished with fresh lettuce and tomato", choices: [{ label: "Options", options: "Wrap or Croissant" }], sizes: [{ size: "", price: "$7.75" }] },
           { name: "Chicken Bacon Ranch Sandwich", description: "Grilled chicken breast, our housemade ranch, and crispy bacon topped with lettuce and tomato", sizes: [{ size: "", price: "$8.50" }] },
           { name: "Veggie Sandwich", description: "Assorted vegetables and hummus between bakery multigrain bread", sizes: [{ size: "", price: "$7.75" }] },
+          { name: "Turkey Sandwich", description: "Sliced turkey breast, cheese, lettuce, and tomato", choices: [{ label: "Options", options: "Wrap or Croissant" }], sizes: [{ size: "", price: "$7.50" }] },
+          { name: "Turkey Burger", description: " ", sizes: [{ size: " ", price: "$8.00" }, { size: "Add Cheese ", price: "$0.50" }] },
+          { name: "Hamburger", description: " ", sizes: [{ size: " ", price: "$7.00" }, { size: "Add Cheese ", price: "$0.50" }, { size: "With Fries ", price: "$10.00" }] },
+          { name: "Hot Dog", description: " ", sizes: [{ size: " ", price: "$3.50" }, { size: "With Fries ", price: "$6.50" }] },
+        ],
+        salads: [
           { name: "Chicken Caesar Salad", description: "Classic combination of fresh ingredients including Romain lettuce, grilled chicken, and a creamy, tangy Caesar dressing, topped with Parmesan cheese", sizes: [{ size: "", price: "$9.95" }] },
           { name: "3104 Salad", description: "Lettuce, Julienne sliced ham, Swiss cheese, green olives, Parmesan cheese, and tomato, with homemade vinaigrette dressing", sizes: [{ size: "", price: "$9.95" }] },
-          { name: "Chicken Caesar Wrap", description: "All the bold, zesty flavors of a classic Caesar salad, tucked into a soft, fresh tortilla for the perfect handheld bite", sizes: [{ size: "Cold", price: "$7.75" }, { size: "Grilled", price: "$7.75" }] },
-          { name: "Turkey Sandwich", description: "Sliced turkey breast, cheese, lettuce, and tomato", sizes: [{ size: "Wrap", price: "$7.50" }, { size: "Croissant", price: "$7.50" }] },
-          { name: "Roast Pork Meal", description: "Our family's slow roasted mojo pork with black beans, yellow rice, and a side of cuban toast", sizes: [{ size: "", price: "$10.50" }] },
-          { name: "Assorted Empanadas", description: " ", sizes: [{ size: "", price: "$3.75" }] },
-          { name: "Chicken Tenders with Fries", description: "Served with BBQ sauce or ranch dressing and a side of our dipper fries ", sizes: [{ size: "", price: "$8.95" }] },
-
         ],
         sides: [
+          { name: "Assorted Empanadas", description: "", sizes: [{ size: "", price: "$3.75" }] },
           { name: "Black Beans and Yellow Rice", description: "Our classic cuban black beans and yellow rice", sizes: [{ size: "", price: "$4.00" }] },
           { name: "Dipper Fries", description: "Served with BBQ sauce or ranch dressing and a side of our dipper fries", sizes: [{ size: "", price: "$3.95" }] },
           { name: "Mozzarella Sticks", description: "Fried golden brown with a side of Marinara", sizes: [{ size: "", price: "$8.75" }] },
@@ -280,6 +332,7 @@
       items.forEach(item => {
         const row = document.createElement("div");
         row.className = "menu-item";
+        if (category === "lunch" && item.name === "Hot Dog") row.classList.add("hot-dog-item");
         const detail = document.createElement("div");
         const name = document.createElement("div");
         name.className = "item-name";
@@ -288,7 +341,21 @@
         description.className = "item-description";
         description.textContent = item.description;
         detail.className = "item-detail";
-        detail.append(name, description);
+        detail.appendChild(name);
+        if (item.choices && item.choices.length) {
+          const choices = document.createElement("div");
+          choices.className = item.choices.every(choice => choice.label === "Options") ? "menu-options" : "sandwich-options";
+          item.choices.forEach(choice => {
+            const choiceRow = document.createElement("div");
+            choiceRow.className = "option-row";
+            const label = document.createElement("strong");
+            label.textContent = choice.label + ": ";
+            choiceRow.append(label, document.createTextNode(choice.options));
+            choices.appendChild(choiceRow);
+          });
+          detail.appendChild(choices);
+        }
+        detail.appendChild(description);
         const prices = document.createElement("div");
         prices.className = "item-prices";
         item.sizes.forEach(option => {
@@ -308,15 +375,24 @@
       });
       }
       appendMenuItems(data.items, list);
-      if (category === "lunch" && data.sides && data.sides.length) {
-        const heading = document.createElement("h4");
-        heading.className = "menu-subsection-title";
-        heading.textContent = "Sides";
-        list.appendChild(heading);
-        const sidesList = document.createElement("div");
-        sidesList.className = "menu-items menu-sides";
-        list.appendChild(sidesList);
-        appendMenuItems(data.sides, sidesList);
+      if (category === "lunch") {
+        [ { key: "salads", title: "Salads" }, { key: "sides", title: "Sides" } ].forEach(section => {
+          if (!data[section.key] || !data[section.key].length) return;
+          const heading = document.createElement("h4");
+          heading.className = "menu-subsection-title";
+          heading.textContent = section.title;
+          list.appendChild(heading);
+          const sectionList = document.createElement("div");
+          sectionList.className = "menu-items menu-" + section.key;
+          list.appendChild(sectionList);
+          appendMenuItems(data[section.key], sectionList);
+        });
+      }
+      const callout = document.getElementById("menu-callout");
+      if (callout) {
+        const message = (menuCallouts[category] || "").trim();
+        callout.textContent = message;
+        callout.hidden = !message;
       }
       document.querySelectorAll(".category-tab").forEach(tab => {
         const selected = tab.dataset.category === category;
