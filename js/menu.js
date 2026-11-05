@@ -68,7 +68,27 @@
         items: [
           { name: "Tampa Cuban", description: "Slow roasted mojo pork, ham, cheese, salami, pickles, and our Cuban sauce pressed perfectly inside fresh baked La Segunda bread", sizes: [{ size: " ", price: "$8.50" }] },
           { name: "Cuban Godfather", description: "Italian cured meats, provolone cheese, tomato,onion, mayo, and sub sauce on La Segunda bread, pressed with garlic butter", sizes: [{ size: " ", price: "$8.50" }] },
-          { name: "Half Cuban with Fries", description: "Half of one of our favorite Cubans and dipper fries", sizes: [{ size: " ", price: "$8.95" }] }
+          { name: "Half Cuban with Fries", description: "Half of one of our favorite Cubans and dipper fries", sizes: [{ size: " ", price: "$8.95" }] },
+          { name: "Chicken Salad Sandwich", description: "Chicken salad made with pecans, crasins, onions, and a hint of hickory honey mustard finished with fresh lettuce and tomato", sizes: [{ size: "Wrap", price: "$7.75" },{ size: "Croissant ", price: "$7.75" }] },
+          { name: "Cuban Grilled Cheese", description: "3 cheeses on La Segunda cuban bread pressed with garlic butter", sizes: [{ size: " ", price: "$7.00" }] },
+          { name: "Hot Dog", description: " ", sizes: [{ size: " ", price: "$3.50" }, { size: "With Fries ", price: "$6.50" }] },
+          { name: "Hamburger", description: " ", sizes: [{ size: " ", price: "$7.00" }, { size: "Add Cheese ", price: "$0.50" }, { size: "With Fries ", price: "$10.00" }] },
+          { name: "Turkey Burger", description: " ", sizes: [{ size: " ", price: "$8.00" }] },
+          { name: "Chicken Bacon Ranch Sandwich", description: "Grilled chicken breast, our housemade ranch, and crispy bacon topped with lettuce and tomato", sizes: [{ size: "", price: "$8.50" }] },
+          { name: "Veggie Sandwich", description: "Assorted vegetables and hummus between bakery multigrain bread", sizes: [{ size: "", price: "$7.75" }] },
+          { name: "Chicken Caesar Salad", description: "Classic combination of fresh ingredients including Romain lettuce, grilled chicken, and a creamy, tangy Caesar dressing, topped with Parmesan cheese", sizes: [{ size: "", price: "$9.95" }] },
+          { name: "3104 Salad", description: "Lettuce, Julienne sliced ham, Swiss cheese, green olives, Parmesan cheese, and tomato, with homemade vinaigrette dressing", sizes: [{ size: "", price: "$9.95" }] },
+          { name: "Chicken Caesar Wrap", description: "All the bold, zesty flavors of a classic Caesar salad, tucked into a soft, fresh tortilla for the perfect handheld bite", sizes: [{ size: "Cold", price: "$7.75" }, { size: "Grilled", price: "$7.75" }] },
+          { name: "Turkey Sandwich", description: "Sliced turkey breast, cheese, lettuce, and tomato", sizes: [{ size: "Wrap", price: "$7.50" }, { size: "Croissant", price: "$7.50" }] },
+          { name: "Roast Pork Meal", description: "Our family's slow roasted mojo pork with black beans, yellow rice, and a side of cuban toast", sizes: [{ size: "", price: "$10.50" }] },
+          { name: "Black Beans and Yellow Rice", description: "Our classic cuban black beans and yellow rice", sizes: [{ size: "", price: "$4.00" }] },
+          { name: "Assorted Empanadas", description: " ", sizes: [{ size: "", price: "$3.75" }] },
+          { name: "Chicken Tenders with Fries", description: "Served with BBQ sauce or ranch dressing and a side of our dipper fries ", sizes: [{ size: "", price: "$8.95" }] },
+          { name: "Dipper Fries", description: "Served with BBQ sauce or ranch dressing and a side of our dipper fries", sizes: [{ size: "", price: "$3.95" }] },
+          { name: "Mozzarella Sticks", description: "Fried golden brown with a side of Marinara", sizes: [{ size: "", price: "$8.75" }] },
+          { name: "Jalapeno Poppers", description: " ", sizes: [{ size: "", price: "$8.75" }] },
+          { name: "Onion Rings", description: " ", sizes: [{ size: "", price: "$4.50" }] },
+          { name: "Side of Sauce", description: "Honey Mustard, Ranch, BBQ, or Bleu Cheese ", sizes: [{ size: "", price: "$0.75" }] }
         ]
       }
     };
