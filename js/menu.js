@@ -106,13 +106,13 @@
       breakfast: {
         title: "Breakfast",
         items: [
-          { name: "Build Your Own Breakfast Sandwich", description: "", choices: [{ label: "Bread", options: "Cuban Bread, Croissant, Bagel, or Wrap" }, { label: "Cheese", options: "American, Swiss, or Provolone" }, { label: "Meat", options: "Bacon, Sausage, or Ham" }], sizes: [{ size: " ", price: "$6.25" }, ] },
+          { name: "Build Your Own Breakfast Sandwich", description: "", choices: [{ label: "Bread", options: "Cuban Bread, Croissant, Bagel, Wrap" }, { label: "Cheese", options: "American, Swiss, Provolone" }, { label: "Meat", options: "Bacon, Sausage, Ham" }], sizes: [{ size: " ", price: "$6.25" }, ] },
           { name: "Cuban Toast", description: "Fresh La Segunda Cuban Bread, spread with butter, pressed to perfection", sizes: [{ size: " ", price: "$3.00" }, { size: "Add cheese", price: "$0.75" }] },
           { name: "Churro Toast", description: "Our classic pressed cuban toast with cinnamon sugar", sizes: [{ size: "", price: "$3.50" }] },
           { name: "Grit Bowl", description: "Cheddar grits topped with scrambled eggs and a choice of bacon or sausage on top", sizes: [{ size: " ", price: "$5.75" }] },
           { name: "French Toast Sticks with Syrup", description: "Cinnamon french toast sticks fried to a golden brown served with maple syrup", sizes: [{ size: " ", price: "$3.50" }] },
           { name: "Tater Tots", description: " ", sizes: [{ size: " ", price: "$3.00" }] },
-          { name: "Bagel with Cream Cheese", description: " ", sizes: [{ size: " ", price: "$3.25" }] },
+          { name: "Bagel with Cream Cheese", description: "Plain, Blueberry, Everything Bagel", sizes: [{ size: " ", price: "$3.25" }] },
           { name: "Two Toast with Butter or Jelly", description: " ", sizes: [{ size: " ", price: "$3.00" }] },
           { name: "Whole Fruit", description: " ", sizes: [{ size: " ", price: "$1.00" }] },
           { name: "Fresh Fruit Cup", description: " ", sizes: [{ size: "Small", price: "$2.75" }, { size: "Large", price: "$3.75" }] },
@@ -154,7 +154,10 @@
 
     const today = localDate(new Date());
     let weekStart = mondayOfWeek(today);
-    let selectedDate = localDate(today);
+    let selectedDate = (today.getDay() === 6) ? addDays(today, 2) : (today.getDay() === 0) ? addDays(today, 1) : localDate(today);
+    const isWeekend = today.getDay() === 0 || today.getDay() === 6;
+    if (isWeekend) document.documentElement.classList.add("weekend-specials");
+    let menuItemId = 0;
     let activeCategory = "drinks";
 
     function localDate(date) {
@@ -184,7 +187,7 @@
       if (!entry) return [];
       return (Array.isArray(entry) ? entry : [entry]).filter(item => item && item.title);
     }
-    function renderCalendar() {
+    function renderCalendar(focusDay = -1) {
       const grid = document.getElementById("calendar-grid");
       const weekEnd = addDays(weekStart, 4);
       document.getElementById("week-label").textContent =
@@ -200,6 +203,7 @@
         button.type = "button";
         button.className = "day-card" + (isToday ? " today" : "") + (isSelected ? " selected" : "");
         button.setAttribute("aria-pressed", String(isSelected));
+        button.setAttribute("aria-controls", "specials-list");
         button.setAttribute("aria-label", `${dayNames[i]}, ${formatDate(date, { month: "long", day: "numeric" })}: ${specials.length ? specials.map(item => item.title).join(", ") : "No specials listed"}${isToday ? ", today" : ""}`);
         const dayName = document.createElement("span");
         dayName.className = "day-name";
@@ -222,22 +226,33 @@
         button.append(dayName, dayNumber, daySpecials);
         button.addEventListener("click", () => {
           selectedDate = localDate(date);
-          renderCalendar();
+          renderCalendar(i);
           renderSpecial();
         });
         grid.appendChild(button);
       }
+      if (focusDay >= 0) grid.children[focusDay]?.focus();
     }
-    // On small screens, show only today's and tomorrow's specials, including every item.
+    // Feature the next two business days on weekends, in both desktop and mobile layouts.
+    // On weekdays, mobile continues to show today and the next business day.
     function renderMobileSpecials() {
       const container = document.getElementById("mobile-specials");
       container.replaceChildren();
-      [0, 1].forEach(offset => {
-        const date = addDays(localDate(new Date()), offset);
+      const currentDate = localDate(new Date());
+      let firstDate = localDate(currentDate);
+      while (firstDate.getDay() === 0 || firstDate.getDay() === 6) {
+        firstDate = addDays(firstDate, 1);
+      }
+      let secondDate = addDays(firstDate, 1);
+      while (secondDate.getDay() === 0 || secondDate.getDay() === 6) {
+        secondDate = addDays(secondDate, 1);
+      }
+      container.setAttribute("aria-label", isWeekend ? "Upcoming Monday and Tuesday specials" : "Today and next business day specials");
+      [firstDate, secondDate].forEach((date, offset) => {
         const section = document.createElement("section");
-        section.className = "mobile-special-day" + (offset === 0 ? " mobile-today" : "");
+        section.className = "mobile-special-day" + (offset === 0 && !isWeekend ? " mobile-today" : "");
         const heading = document.createElement("h3");
-        heading.textContent = `${offset === 0 ? "Today's Specials" : "Tomorrow's Specials"} · ${formatDate(date, { weekday: "short", month: "short", day: "numeric" })}`;
+        heading.textContent = `${offset === 0 && !isWeekend ? "Today's Specials" : `${formatDate(date, { weekday: "long" })}’s Specials`} · ${formatDate(date, { weekday: "short", month: "short", day: "numeric" })}`;
         section.appendChild(heading);
         const specials = specialsFor(date);
         if (!specials.length) {
@@ -267,6 +282,8 @@
       const isToday = selectedDate.getTime() === today.getTime();
       document.getElementById("special-date").textContent =
         `${formatDate(selectedDate, { weekday: "long", month: "long", day: "numeric", year: "numeric" })}${isToday ? " · Today" : ""}`;
+      const status = document.getElementById("special-status");
+      if (status) status.textContent = `Showing specials for ${formatDate(selectedDate, {weekday: "long", month: "long", day: "numeric"})}.`;
       const list = document.getElementById("specials-list");
       list.replaceChildren();
       if (!specials.length) {
@@ -305,7 +322,8 @@
       if (opening) {
         // Open on the current week, with today's specials selected.
         weekStart = mondayOfWeek(today);
-        selectedDate = localDate(today);
+        selectedDate = (today.getDay() === 6) ? addDays(today, 2) : (today.getDay() === 0) ? addDays(today, 1) : localDate(today);
+        weekStart = mondayOfWeek(selectedDate);
         renderCalendar();
         renderSpecial();
       }
@@ -315,7 +333,8 @@
     document.getElementById("today-week").addEventListener("click", () => {
       weekStart = mondayOfWeek(today);
       // If today is Saturday or Sunday, select Monday, since the calendar shows weekdays only.
-      selectedDate = (today.getDay() === 0 || today.getDay() === 6) ? localDate(weekStart) : localDate(today);
+      selectedDate = (today.getDay() === 6) ? addDays(today, 2) : (today.getDay() === 0) ? addDays(today, 1) : localDate(today);
+      weekStart = mondayOfWeek(selectedDate);
       renderCalendar();
       renderSpecial();
     });
@@ -323,6 +342,8 @@
     function renderMenu(category) {
       activeCategory = category;
       const data = menuData[category];
+      const status = document.getElementById("menu-status");
+      if (status) status.textContent = `${category[0].toUpperCase() + category.slice(1)} menu selected.`;
       document.getElementById("menu-category-title").textContent = data.title;
       const panel = document.getElementById("menu-panel");
       panel.setAttribute("aria-labelledby", `tab-${category}`);
@@ -330,16 +351,23 @@
       list.replaceChildren();
       function appendMenuItems(items, container) {
       items.forEach(item => {
-        const row = document.createElement("div");
+        const row = document.createElement("article");
         row.className = "menu-item";
+        const itemId = `menu-item-${++menuItemId}`;
+        row.setAttribute("aria-labelledby", `${itemId}-name`);
         if (category === "lunch" && item.name === "Hot Dog") row.classList.add("hot-dog-item");
         const detail = document.createElement("div");
         const name = document.createElement("div");
         name.className = "item-name";
+        name.id = `${itemId}-name`;
         name.textContent = item.name;
         const description = document.createElement("p");
         description.className = "item-description";
         description.textContent = item.description;
+        if (item.description && item.description.trim()) {
+          description.id = `${itemId}-description`;
+          row.setAttribute("aria-describedby", description.id);
+        }
         detail.className = "item-detail";
         detail.appendChild(name);
         if (item.choices && item.choices.length) {
@@ -355,9 +383,10 @@
           });
           detail.appendChild(choices);
         }
-        detail.appendChild(description);
+        if (item.description && item.description.trim()) detail.appendChild(description);
         const prices = document.createElement("div");
         prices.className = "item-prices";
+        prices.setAttribute("aria-label", `Prices for ${item.name}`);
         item.sizes.forEach(option => {
           const sizePrice = document.createElement("div");
           sizePrice.className = "item-price";
@@ -415,6 +444,7 @@
       });
     });
 
+    weekStart = mondayOfWeek(selectedDate);
     renderCalendar();
     renderSpecial();
     renderMobileSpecials();

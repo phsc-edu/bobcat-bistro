@@ -141,7 +141,7 @@ h1 {
       border: 1px solid var(--gold-dark);
       border-radius: 9px;
       cursor: pointer;
-      font-weight: 750;
+      font-weight: 700;
       transition: background .15s ease, transform .15s ease;
     }
     .nav-button {
@@ -165,7 +165,7 @@ h1 {
     .week-label {
       flex: 1;
       text-align: center;
-      font-weight: 800;
+      font-weight: 700;
       font-size: .94rem;
     }
     .calendar-grid { 
@@ -185,8 +185,8 @@ h1 {
       text-align: center;
       cursor: pointer;
     }
-    .day-card .day-name { display: block; color: var(--muted); font-size: .72rem; font-weight: 800; text-transform: uppercase; }
-    .day-card .day-number { display: block; margin: 2px 0 7px; font-size: 1.35rem; font-weight: 800; }
+    .day-card .day-name { display: block; color: var(--muted); font-size: .72rem; font-weight: 700; text-transform: uppercase; }
+    .day-card .day-number { display: block; margin: 2px 0 7px; font-size: 1.35rem; font-weight: 700; }
     .day-card .day-special { display: block; font-size: .72rem; line-height: 1.25; overflow-wrap: anywhere; }
     .day-card.selected { border: 2px solid var(--gold-dark); padding: 9px 5px; background: #fff8e5; }
     .day-card.today { box-shadow: inset 0 0 0 2px var(--gold); }
@@ -199,7 +199,7 @@ h1 {
       background: #fff5d8;
       border-left: 4px solid var(--gold);
     }
-    .daily-special .special-date { margin-bottom: 4px; color: var(--gold-dark); font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .daily-special .special-date { margin-bottom: 4px; color: var(--gold-dark); font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
     .daily-special h3 { margin-bottom: 4px; font-size: 1rem; }
     .daily-special p { margin-bottom: 0; color: #5e5544; }
 
@@ -214,11 +214,11 @@ h1 {
       background: #fff;
       color: var(--ink);
       font-size: .9rem;
-      font-weight: 750;
+      font-weight: 700;
       cursor: pointer;
     }
     .category-tab[aria-selected="true"] { background: var(--gold); border-color: var(--gold-dark); }
-    .menu-category-title { margin-bottom: 12px; font-family: "Ariel", sans-serif; font-size: 1.125rem; font-weight: 800;}
+    .menu-category-title { margin-bottom: 12px; font-family: "Arial", sans-serif; font-size: 1.125rem; font-weight: 700;}
     .menu-items { display: grid; gap: 0; }
     .menu-item { display: flex; justify-content: space-between; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); }
     .menu-item:first-child { padding-top: 0; }
@@ -302,7 +302,7 @@ h1 {
   .browse-specials-button {
     display: block; width: 100%; min-height: 44px; margin-top: 14px;
     border: 1px solid var(--gold-dark); border-radius: 10px;
-    background: var(--gold); color: #252525; font-weight: 750;
+    background: var(--gold); color: #252525; font-weight: 700;
     cursor: pointer;
   }
   .browse-specials-button:focus-visible { outline: 3px solid #60470d; outline-offset: 3px; }
@@ -318,7 +318,7 @@ h1 {
 }
 
 /* Lunch sides are grouped beneath lunch entrees, including on mobile. */
-.menu-subsection-title { margin: 24px 0 8px; padding: 12px 0 8px; border-top: 2px solid var(--gold-dark); font-size: 1.15rem; font-weight: 800; }
+.menu-subsection-title { margin: 24px 0 8px; padding: 12px 0 8px; border-top: 2px solid var(--gold-dark); font-size: 1.15rem; font-weight: 700; }
 .menu-sides { min-width: 0; }
 @media (max-width: 600px) { .menu-subsection-title { margin-top: 18px; } }
 
@@ -387,3 +387,470 @@ h1 {
 
 /* Hide blank callouts, including their padding and margins. */
 .menu-callout[hidden], .menu-callout:empty { display: none; }
+
+/* Compact outlined click-to-call button */
+.call-order-button {
+  display: inline-block;
+  margin: 12px auto 0;
+  padding: 9px 16px;
+  color: #000000;
+  background: #fffdf8;
+  border: 1px solid #e6bb52;
+  border-radius: 7px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.call-order-button::before {
+  content: "☎";
+  display: inline-block;
+  margin-right: 8px;
+}
+.call-order-button:hover { background: #f8f0dc; border-color: #96701a; }
+.call-order-button:focus-visible { outline: 2px solid #795d20; outline-offset: 3px; }
+
+.call-order-button:hover, .call-order-button:focus { color: #000000; }
+
+/* Compact responsive header */
+.hero { text-align: left; padding: 14px 16px; }
+.hero-brand { display: flex; align-items: center; gap: 12px; }
+.bistro-logo { width: 76px; height: 76px; object-fit: contain; flex-shrink: 0; }
+.hero-brand-text { flex: 1; min-width: 0; }
+.hero-brand-text h1 { margin: 0 0 3px; }
+.hero-brand-text .hero-copy { margin: 0; font-size: .78rem; line-height: 1.4; }
+.hero-details { border-top: 1px solid #e6bb52; margin-top: 12px; padding-top: 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.hero-hours { min-width: 0; }
+.hero-hours p { margin: 0; }
+.hero-hours-primary { font-size: .78rem; font-weight: 600; }
+.hero-hours-secondary { font-size: .72rem; color: #666; }
+.call-order-button { flex-shrink: 0; margin: 0; padding: 9px 12px; background: #fffdf8; border-color: #e6bb52; color: #000; transition: background-color .2s ease; }
+.call-order-button:hover { background: #f8eac5; border-color: #e6bb52; color: #000; }
+.call-order-button:focus-visible { outline: 2px solid #795d20; outline-offset: 3px; }
+@media (max-width: 380px) {
+ .hero { padding: 12px; }
+ .bistro-logo { width: 64px; height: 64px; }
+ .hero-brand { gap: 9px; }
+ .hero-brand-text h1 { font-size: 1.25rem; }
+ .hero-hours-primary { font-size: .72rem; }
+ .hero-hours-secondary { font-size: .66rem; }
+ .call-order-button { font-size: .76rem; padding: 8px; }
+ .call-order-button::before { margin-right: 4px; }
+}
+
+
+/* Approved update: outlined, compact menu options and tighter vertical spacing. */
+.menu-item { padding-top: 8px; padding-bottom: 6px; }
+.menu-item:first-child { padding-top: 0; }
+.menu-item:last-child { padding-bottom: 0; }
+.item-name { margin-bottom: 3px; }
+.menu-options, .sandwich-options {
+  display: table;
+  width: auto;
+  max-width: 100%;
+  background: #ffffff;
+  border: 1px solid #e6bb52;
+  border-radius: 5px;
+  padding: 4px 8px;
+  margin: 4px 0;
+  color: #222222;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+.menu-options .option-row, .sandwich-options .option-row { padding: 2px 0; }
+.sandwich-options strong, .sandwich-options b { font-weight: 400; }
+@media (max-width: 600px) {
+  .menu-item { padding-top: 8px; padding-bottom: 6px; }
+  .menu-item:first-child { padding-top: 0; }
+  .menu-item:last-child { padding-bottom: 0; }
+}
+
+/* Approved update: centered, high-contrast dark footer with click-to-call. */
+.bistro-footer {
+  background: #303030;
+  color: #f0f0f0;
+  text-align: center;
+  padding: 22px 14px;
+  border-radius: 12px;
+  margin-top: 16px;
+  font-size: .875rem;
+  line-height: 1.5;
+}
+.bistro-footer p { margin: 0 0 8px; color: #f0f0f0; }
+.bistro-footer p:last-child { margin-bottom: 0; }
+.bistro-footer .footer-name { color: #ffffff; font-weight: 600; }
+.bistro-footer a { color: #e6bb52; text-decoration: underline; text-underline-offset: 3px; }
+.bistro-footer a:hover { color: #ffe09a; }
+.bistro-footer a:focus-visible { outline: 2px solid #e6bb52; outline-offset: 4px; }
+
+
+/* Bobcat Bistro approved LIGHT THEME — November 2026 */
+:root { --corner-radius: 8px; }
+.hero, .hours-card, .specials-card, .menu-card, .day-card,
+.special-item, .mobile-special-day, .browse-specials-button,
+.nav-button, .today-button, .category-tab, .menu-callout,
+.menu-options, .sandwich-options, .call-order-button,
+.bistro-footer, .daily-special, .item-option { border-radius: var(--corner-radius); }
+
+/* Compact weekly specials without changing the calendar layout. */
+.specials-card { padding: 12px; }
+.specials-card .section-heading { margin-bottom: 8px; }
+.specials-list { gap: 8px; margin-top: 8px; }
+.special-item { padding: 8px; }
+.special-item h3 { margin-bottom: 4px; font-size: 15px; font-weight: 600; }
+.mobile-specials { gap: 8px; margin-top: 8px; }
+.mobile-special-day { padding: 8px; }
+.mobile-special-day h3 { margin-bottom: 4px; font-size: 15px; font-weight: 600; }
+.mobile-special-day .special-item { margin-top: 8px; }
+.mobile-special-day .special-item h4 { margin-bottom: 4px; font-size: 14px; font-weight: 500; }
+
+/* Menu choices: quiet gold-outlined labels, not interactive buttons. */
+.menu-options, .sandwich-options {
+  display: table;
+  max-width: 100%;
+  background: #ffffff;
+  border: 1px solid #e6bb52;
+  border-radius: var(--corner-radius);
+  color: #222222;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 4px 8px;
+  margin: 4px 0 4px;
+}
+.menu-options *, .sandwich-options * { color: #222222; }
+.menu-item .item-name { font-size: 15px; font-weight: 600; }
+.menu-item .item-price, .menu-item .item-prices, .menu-item .price,
+.menu-item .item-amount { font-size: 14px; font-weight: 500; }
+.menu-item { padding-top: 8px; padding-bottom: 6px; margin-bottom: 0; }
+.menu-item:last-child { padding-bottom: 0; }
+
+/* Theme-specific hover and accessible focus styling. */
+.call-order-button { background: #fffdf8; border-color: #e6bb52; color: #000; }
+.call-order-button:hover { background: #f8eac5; color: #000; }
+.call-order-button:focus-visible { outline: 3px solid #85651d; outline-offset: 3px; }
+
+
+/* Theme selector: always visible in the footer, no additional header height. */
+.footer-appearance { border-top: 1px solid #555555; margin-top: 16px; padding-top: 14px; }
+.bistro-footer .appearance-label { margin: 0 0 9px; color: #eeeeee; font-size: 13px; font-weight: 600; }
+.theme-selector { display: inline-flex; width: auto; max-width: 100%; padding: 3px; gap: 3px; background: #1d1d1d; border: 1px solid #656565; border-radius: 8px; }
+.theme-option { border: 0; border-radius: 6px; background: transparent; color: #eeeeee; font-size: 13px; min-width: 64px; min-height: 38px; padding: 7px 13px; cursor: pointer; }
+.theme-option[aria-pressed="true"] { background: #e6bb52; color: #171717; font-weight: 600; }
+.theme-option:hover:not([aria-pressed="true"]) { background: #454545; }
+.theme-option:focus-visible { outline: 3px solid #e6bb52; outline-offset: 2px; }
+
+/* Smaller special descriptions on desktop and mobile; menu descriptions unaffected. */
+.special-item p, .mobile-special-day .special-item p, .daily-special .special-item p { font-size: 12px; line-height: 1.4; }
+
+/* Auto mode uses system preference; explicit Light/Dark overrides it. */
+:root { color-scheme: light; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --black: #181818;
+    --paper: #242424;
+    --cream: #303030;
+    --white: #303030;
+    --ink: #f5f5f5;
+    --muted: #cccccc;
+    --line: #474747;
+    --gold-dark: #e6bb52;
+    --shadow: none;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --black: #181818;
+  --paper: #242424;
+  --cream: #303030;
+  --white: #303030;
+  --ink: #f5f5f5;
+  --muted: #cccccc;
+  --line: #474747;
+  --gold-dark: #e6bb52;
+  --shadow: none;
+}
+/* The :root variable overrides above cover all themed surfaces. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body { background: #181818; }
+}
+:root[data-theme="dark"] body { background: #181818; }
+
+/* Dark styles also apply to system dark mode, unless Light is selected. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero,
+  :root:not([data-theme="light"]) .specials-card,
+  :root:not([data-theme="light"]) .menu-card { color: #f5f5f5; }
+}
+:root[data-theme="dark"] .hero,
+:root[data-theme="dark"] .specials-card,
+:root[data-theme="dark"] .menu-card { color: #f5f5f5; }
+
+/* A shared class on the root is unnecessary: :is matches either dark trigger. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .day-card,
+  :root:not([data-theme="light"]) .mobile-special-day,
+  :root:not([data-theme="light"]) .special-item,
+  :root:not([data-theme="light"]) .category-tab,
+  :root:not([data-theme="light"]) .nav-button { background: #303030; color: #f5f5f5; border-color: #555555; }
+  :root:not([data-theme="light"]) .day-card.selected,
+  :root:not([data-theme="light"]) .mobile-special-day.mobile-today,
+  :root:not([data-theme="light"]) .daily-special { background: #363124; border-color: #e6bb52; color: #f5f5f5; }
+  :root:not([data-theme="light"]) .daily-special p { color: #cccccc; }
+  :root:not([data-theme="light"]) .menu-options,
+  :root:not([data-theme="light"]) .sandwich-options { background: #303030; color: #f5f5f5; }
+  :root:not([data-theme="light"]) .menu-options *,
+  :root:not([data-theme="light"]) .sandwich-options * { color: #f5f5f5; }
+  :root:not([data-theme="light"]) .menu-callout { background: #363124; color: #f5f5f5; }
+  :root:not([data-theme="light"]) .hero-hours-secondary { color: #cccccc; }
+  :root:not([data-theme="light"]) .call-order-button { background: #242424; color: #ffffff; }
+  :root:not([data-theme="light"]) .call-order-button:hover { background: #363124; color: #ffffff; }
+  :root:not([data-theme="light"]) .category-tab[aria-selected="true"],
+  :root:not([data-theme="light"]) .today-button,
+  :root:not([data-theme="light"]) .browse-specials-button { background: #e6bb52; color: #171717; }
+}
+:root[data-theme="dark"] .day-card,
+:root[data-theme="dark"] .mobile-special-day,
+:root[data-theme="dark"] .special-item,
+:root[data-theme="dark"] .category-tab,
+:root[data-theme="dark"] .nav-button { background: #303030; color: #f5f5f5; border-color: #555555; }
+:root[data-theme="dark"] .day-card.selected,
+:root[data-theme="dark"] .mobile-special-day.mobile-today,
+:root[data-theme="dark"] .daily-special { background: #363124; border-color: #e6bb52; color: #f5f5f5; }
+:root[data-theme="dark"] .daily-special p { color: #cccccc; }
+:root[data-theme="dark"] .menu-options,
+:root[data-theme="dark"] .sandwich-options { background: #303030; color: #f5f5f5; }
+:root[data-theme="dark"] .menu-options *,
+:root[data-theme="dark"] .sandwich-options * { color: #f5f5f5; }
+:root[data-theme="dark"] .menu-callout { background: #363124; color: #f5f5f5; }
+:root[data-theme="dark"] .hero-hours-secondary { color: #cccccc; }
+:root[data-theme="dark"] .call-order-button { background: #242424; color: #ffffff; }
+:root[data-theme="dark"] .call-order-button:hover { background: #363124; color: #ffffff; }
+:root[data-theme="dark"] .category-tab[aria-selected="true"],
+:root[data-theme="dark"] .today-button,
+:root[data-theme="dark"] .browse-specials-button { background: #e6bb52; color: #171717; }
+
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .day-card.selected, :root:not([data-theme="light"]) .mobile-special-day.mobile-today { background: #363124; border-color: #e6bb52; } }
+:root[data-theme="dark"] .day-card.selected, :root[data-theme="dark"] .mobile-special-day.mobile-today { background: #363124; border-color: #e6bb52; }
+/* Override legacy hard-coded light text colors for dark appearance. */
+@media (prefers-color-scheme: dark) {
+ :root:not([data-theme="light"]) .menu-item .item-name,
+ :root:not([data-theme="light"]) .menu-item .item-price,
+ :root:not([data-theme="light"]) .menu-item .item-prices,
+ :root:not([data-theme="light"]) .menu-item .price,
+ :root:not([data-theme="light"]) .menu-item .item-amount { color: #f5f5f5; }
+ :root:not([data-theme="light"]) .menu-item .item-description,
+ :root:not([data-theme="light"]) .menu-item .description { color: #cccccc; }
+}
+:root[data-theme="dark"] .menu-item .item-name,
+:root[data-theme="dark"] .menu-item .item-price,
+:root[data-theme="dark"] .menu-item .item-prices,
+:root[data-theme="dark"] .menu-item .price,
+:root[data-theme="dark"] .menu-item .item-amount { color: #f5f5f5; }
+:root[data-theme="dark"] .menu-item .item-description,
+:root[data-theme="dark"] .menu-item .description { color: #cccccc; }
+
+/* Approved site-wide Arial typography: standard regular and bold weights. */
+body, button, input, select, textarea { font-family: Arial, sans-serif; }
+/* Bold is reserved for major section and category headings. */
+.item-name, .menu-item .item-name, .item-amount, .menu-item .item-amount,
+.item-price, .menu-item .item-price, .menu-item .item-prices, .menu-item .price,
+.special-item h3, .mobile-special-day h3, .mobile-special-day .special-item h4,
+.daily-special h3, .bistro-footer .footer-name, .bistro-footer .appearance-label,
+.theme-option[aria-pressed="true"] { font-weight: 400; }
+.nav-button, .today-button, .category-tab, .call-order-button, .theme-option { font-weight: 400; }
+/* Preserve the smaller specials descriptions. */
+.special-item p, .mobile-special-day .special-item p, .daily-special .special-item p { font-size: 12px; line-height: 1.4; font-weight: 400; }
+
+/* Accessibility improvements — both automatic and manually selected themes. */
+html { font-size: 100%; }
+body, button, input, select, textarea { font-family: Arial, sans-serif; }
+.hero-brand-text h1, .section-heading h2 { font-family: Arial, sans-serif; font-weight: 700; }
+.menu-item .item-name { font-size: 1rem; font-weight: 400; line-height: 1.45; }
+.menu-item .item-price, .menu-item .item-amount, .menu-item .item-prices { font-weight: 400; }
+.special-item p, .mobile-special-day .special-item p, .daily-special .special-item p { font-size: .875rem; line-height: 1.5; }
+.hero-copy, .hero-brand-text .hero-copy, .hero-hours-primary, .hero-hours-secondary { font-size: .875rem; line-height: 1.5; }
+.day-card .day-name, .day-card .day-special, .day-card .day-special-item { font-size: .8125rem; line-height: 1.4; }
+.day-card.today .day-name::after { font-size: .75rem; }
+.daily-special .special-date { font-size: .875rem; letter-spacing: .02em; }
+.menu-options, .sandwich-options, .theme-option, .bistro-footer .appearance-label { font-size: .875rem; }
+.category-tab { font-size: .875rem; }
+.nav-button, .today-button, .browse-specials-button, .call-order-button, .theme-option { min-height: 44px; }
+.nav-button { min-width: 44px; }
+.day-card { min-height: 112px; }
+.theme-option { min-width: 64px; }
+/* Accessible gold for small text on light backgrounds. */
+:root { --gold-dark: #785712; }
+.daily-special .special-date, .day-card.today .day-name::after { color: var(--gold-dark); }
+/* Dark mode keeps bright gold on charcoal. */
+@media (prefers-color-scheme: dark) {
+ :root:not([data-theme="light"]) { --gold-dark: #e6bb52; }
+}
+:root[data-theme="dark"] { --gold-dark: #e6bb52; }
+/* Visible focus on all actionable controls, regardless of theme. */
+:where(a, button, [tabindex]):focus-visible { outline: 3px solid #785712; outline-offset: 3px; }
+@media (prefers-color-scheme: dark) {
+ :root:not([data-theme="light"]) :where(a, button, [tabindex]):focus-visible { outline-color: #e6bb52; }
+}
+:root[data-theme="dark"] :where(a, button, [tabindex]):focus-visible { outline-color: #e6bb52; }
+.bistro-footer :where(a,button):focus-visible { outline-color: #e6bb52; }
+.sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
+.skip-link { position: absolute; top: -100px; left: 12px; z-index: 1000; padding: 12px 16px; background: #ffffff; color: #171717; border: 2px solid #785712; border-radius: 8px; }
+.skip-link:focus { top: 8px; }
+.bistro-menu { width: 94%; max-width: 720px; }
+.menu-item, .hero-details, .week-navigation { min-width: 0; }
+.item-detail, .item-prices, .item-name, .item-description { overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+ .hero-hours-primary, .hero-hours-secondary, .hero-brand-text .hero-copy { font-size: .875rem; }
+ .category-tab { font-size: .875rem; }
+ .day-card .day-name { font-size: .75rem; }
+ .day-card .day-number { font-size: 1.125rem; }
+ .specials-browser .day-card { min-height: 70px; }
+}
+@media (max-width: 380px) {
+ .hero-hours-primary, .hero-hours-secondary, .call-order-button { font-size: .8125rem; }
+ .hero-details { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+ *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* WCAG reflow: stack category tabs at narrow CSS viewport widths, including 400% zoom. */
+@media (max-width: 480px) {
+  .category-tabs { grid-template-columns: 1fr; gap: 8px; }
+  .category-tab { width: 100%; min-height: 44px; }
+}
+
+/* Final approved refinements: special-name hierarchy and call-button alignment. */
+/* Apply to desktop and mobile specials in both appearance themes. */
+.special-item h3,
+.mobile-special-day .special-item h4 {
+  font-family: Arial, sans-serif;
+  font-size: .875rem; /* 14px at standard browser settings */
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0 0 4px;
+}
+.special-item p,
+.mobile-special-day .special-item p,
+.daily-special .special-item p {
+  font-family: Arial, sans-serif;
+  font-size: .8125rem; /* 13px */
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  color: #555555;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .special-item p,
+  :root:not([data-theme="light"]) .mobile-special-day .special-item p,
+  :root:not([data-theme="light"]) .daily-special .special-item p { color: #cccccc; }
+}
+:root[data-theme="dark"] .special-item p,
+:root[data-theme="dark"] .mobile-special-day .special-item p,
+:root[data-theme="dark"] .daily-special .special-item p { color: #cccccc; }
+
+/* Shift the phone icon and label down 2px without moving the button box. */
+.call-order-button { padding-top: 11px; padding-bottom: 7px; }
+@media (max-width: 380px) {
+  .call-order-button { padding-top: 10px; padding-bottom: 6px; }
+}
+
+/* Final review: match Browse All Specials typography to other buttons on mobile. */
+@media (max-width: 600px) {
+  .browse-specials-button {
+    font-family: Arial, sans-serif;
+    font-size: .875rem;
+    font-weight: 400;
+    text-align: center;
+    border-radius: 8px;
+    min-height: 44px;
+  }
+}
+/* On weekends, show Monday and Tuesday feature cards at desktop sizes as well.
+   Keep the full weekday calendar available below for browsing. */
+@media (min-width: 601px) {
+  :root.weekend-specials .mobile-specials {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin: 8px 0 14px;
+  }
+  :root.weekend-specials .mobile-special-day {
+    min-width: 0;
+    padding: 8px;
+    border: 1px solid #e6d7ad;
+    border-radius: 8px;
+    background: #ffffff;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root.weekend-specials:not([data-theme="light"]) .mobile-special-day {
+    background: #303030;
+    border-color: #665b43;
+  }
+}
+:root.weekend-specials[data-theme="dark"] .mobile-special-day {
+  background: #303030;
+  border-color: #665b43;
+}
+
+
+/* Consistent hover feedback for menu categories and Weekly Specials controls.
+   Preserve selected/expanded states and keyboard focus outlines. */
+@media (hover: hover) and (pointer: fine) {
+  .category-tab:not([aria-selected="true"]):hover,
+  .day-card:not(.selected):hover,
+  .nav-button:hover,
+  .today-button:hover,
+  .browse-specials-button:hover {
+    background-color: #f8eac5;
+    color: #252525;
+    border-color: #96701a;
+  }
+  .category-tab[aria-selected="true"]:hover,
+  .day-card.selected:hover {
+    filter: brightness(0.96);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .category-tab:not([aria-selected="true"]):hover,
+    :root:not([data-theme="light"]) .day-card:not(.selected):hover,
+    :root:not([data-theme="light"]) .nav-button:hover,
+    :root:not([data-theme="light"]) .today-button:hover,
+    :root:not([data-theme="light"]) .browse-specials-button:hover {
+      background-color: #4b4028;
+      color: #ffffff;
+      border-color: #e6bb52;
+    }
+  }
+  :root[data-theme="dark"] .category-tab:not([aria-selected="true"]):hover,
+  :root[data-theme="dark"] .day-card:not(.selected):hover,
+  :root[data-theme="dark"] .nav-button:hover,
+  :root[data-theme="dark"] .today-button:hover,
+  :root[data-theme="dark"] .browse-specials-button:hover {
+    background-color: #4b4028;
+    color: #ffffff;
+    border-color: #e6bb52;
+  }
+  .category-tab, .day-card, .nav-button, .today-button, .browse-specials-button {
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .category-tab, .day-card, .nav-button, .today-button, .browse-specials-button {
+    transition: none !important;
+  }
+}
+
+/* Production review: restore the original three-across mobile category tabs.
+   Stack only at extremely narrow CSS viewports to preserve zoom reflow. */
+@media (max-width: 480px) and (min-width: 361px) {
+  .category-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; }
+  .category-tab { width: 100%; min-width: 0; min-height: 44px; }
+}
+@media (max-width: 360px) {
+  .category-tabs { grid-template-columns: 1fr; gap: 8px; }
+}

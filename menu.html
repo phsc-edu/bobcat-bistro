@@ -10,9 +10,18 @@
   <meta http-equiv="Expires" content="0">
 
   <!-- Add version numbers to prevent caching -->
-  <link rel="stylesheet" href="css/bistro.css?v=8">
+  <link rel="stylesheet" href="css/bistro.css?v=20">
   <link rel="icon" type="image/png" href="images/favicon.ico?v=1">
-  <script src="js/menu.js?v=8" defer></script>
+  <script src="js/menu.js?v=12" defer></script>
+  <script src="js/theme.js?v=1" defer></script>
+  <script>
+    try {
+      const savedTheme = localStorage.getItem("bobcat-bistro-theme");
+      if (savedTheme === "light" || savedTheme === "dark") {
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      }
+    } catch (error) { /* Device preference remains the default. */ }
+  </script>
 
   <!-- PHSC Gold -->
   <meta name="theme-color" content="#e6bb52">
@@ -20,29 +29,30 @@
   <title>Bobcat Bistro Menu</title>
 </head>
 <body>
+  <a class="skip-link" href="#specials-heading">Skip to today's specials</a>
   <main class="bistro-menu">
     <header class="hero">
-      <p class="eyebrow">Monday-Friday 8 a.m. to 3 p.m.</p>
-      <h1>Bobcat Bistro</h1>
-      <p class="hero-copy">Operated by Havana Dreamers at West Campus</p>
+      <div class="hero-brand">
+        <img class="bistro-logo" src="images/havana-dreamers-logo.png" alt="Havana Dreamers logo" width="76" height="76">
+        <div class="hero-brand-text">
+          <h1>Bobcat Bistro</h1>
+          <p class="hero-copy">Operated by Havana Dreamers<br>West Campus</p>
+        </div>
+      </div>
+      <div class="hero-details">
+        <div class="hero-hours">
+          <p class="hero-hours-primary">Mon–Fri · 8 a.m.–3 p.m.</p>
+          <p class="hero-hours-secondary">Breakfast 8–11 · Lunch 11–3</p>
+        </div>
+        <a class="call-order-button" href="tel:+17278163308" aria-label="Call Bobcat Bistro at 727-816-3308 to place an order">Call to Order</a>
+      </div>
     </header>
-
-    <section class="hours-card" aria-labelledby="hours-heading">
-      <div class="section-heading">
-        <h2 id="hours-heading">Hours</h2>
-      </div>
-      <div class="hours-grid">
-        <div class="hours-row"><span class="hours-label">Breakfast</span><span class="hours-time">8 a.m. – 11 a.m.</span></div>
-        <div class="hours-row"><span class="hours-label">Lunch</span><span class="hours-time">11 a.m. – 3 p.m.</span></div>
-        <div class="hours-row"><span class="hours-label">Thanksgiving · Nov 23-27</span><span class="hours-time">Closed</span></div>
-      </div>
-    </section>
 
     <section class="specials-card" aria-labelledby="specials-heading">
       <div class="section-heading">
-        <h2 id="specials-heading">Weekly Specials</h2>
+        <h2 id="specials-heading" tabindex="-1">Weekly Specials</h2>
       </div>
-      <div class="mobile-specials" id="mobile-specials" aria-label="Today and tomorrow specials"></div>
+      <div class="mobile-specials" id="mobile-specials" aria-label="Today and next business day specials"></div>
       <button type="button" class="browse-specials-button" id="browse-specials" aria-expanded="false" aria-controls="specials-browser">Browse all specials</button>
       <div id="specials-browser" class="specials-browser">
       <div class="week-navigation" aria-label="Calendar navigation">
@@ -51,10 +61,11 @@
         <span class="week-label" id="week-label" aria-live="polite"></span>
         <button type="button" class="nav-button" id="next-week" aria-label="Next week">&rarr;</button>
       </div>
-      <div class="calendar-grid" id="calendar-grid" aria-label="Monday to Friday specials"></div>
-      <div class="daily-special" id="daily-special" aria-live="polite">
+      <div class="calendar-grid" id="calendar-grid" role="group" aria-label="Monday to Friday specials"></div>
+      <div class="daily-special" id="daily-special">
         <p class="special-date" id="special-date"></p>
-        <div class="specials-list" id="specials-list" aria-label="Specials for selected day"></div>
+        <p class="sr-only" id="special-status" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div class="specials-list" id="specials-list" role="region" aria-labelledby="special-date"></div>
       </div>
       </div>
     </section>
@@ -71,13 +82,26 @@
       </div>
       <p class="menu-callout" id="menu-callout" aria-live="polite"></p>
       <div id="menu-panel" role="tabpanel" aria-labelledby="tab-drinks" tabindex="0">
+        <p class="sr-only" id="menu-status" role="status" aria-live="polite" aria-atomic="true"></p>
         <h3 class="menu-category-title" id="menu-category-title">Coffee</h3>
         <!-- Lunch entrees, Salads, and Sides are rendered here by menu.js. -->
         <div class="menu-items" id="menu-items"></div>
       </div>
       <p class="menu-note"></p>
     </section>
-    <footer><p>Bobcat Bistro 10230 Ridge Road New Port Richey, FL 34654 727-847-2727</p></footer>
+    <footer class="bistro-footer">
+      <p class="footer-name">Bobcat Bistro</p>
+      <p>10230 Ridge Road<br>New Port Richey, FL 34654</p>
+      <p><a href="tel:+17278163308" aria-label="Call Bobcat Bistro at 727-816-3308">727-816-3308</a></p>
+      <div class="footer-appearance" role="group" aria-labelledby="appearance-label">
+        <p id="appearance-label" class="appearance-label">Appearance</p>
+        <div class="theme-selector">
+          <button type="button" class="theme-option" data-theme-choice="auto" aria-pressed="true">Auto</button>
+          <button type="button" class="theme-option" data-theme-choice="light" aria-pressed="false">Light</button>
+          <button type="button" class="theme-option" data-theme-choice="dark" aria-pressed="false">Dark</button>
+        </div>
+      </div>
+    </footer>
   </main>
 </body>
 </html>
