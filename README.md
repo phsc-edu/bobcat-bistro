@@ -30,3 +30,12 @@ Production testing update: Drinks, Breakfast, and Lunch display horizontally at 
 Mobile tab fix: Drinks, Breakfast and Lunch remain in three equal columns at all mobile widths. CSS cache version updated to v21.
 
 User testing update: Mobile specials dates appear below headings; menu callouts are Arial Regular 13px with 1.5 line height. Cache versions updated.
+
+
+## Final Samsung S26 user-testing refinements
+- Mobile category tabs stay horizontal with a wider Breakfast tab and reduced internal horizontal padding; extremely narrow zoomed viewports (280 CSS pixels or less) may stack for reflow accessibility.
+- Mobile Call to Order button centered below left-aligned hours.
+- Mobile branding subtitle line spacing tightened.
+- Outside card padding and desktop styling unchanged.
+- CSS cache-busting version increased to v=23.
+- Browser/device and full accessibility regression testing should be performed after deployment.
