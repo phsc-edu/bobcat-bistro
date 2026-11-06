@@ -26,3 +26,7 @@ Final review changes: Mobile Browse All Specials uses Arial regular (400) with c
 Added consistent hover states for Drinks/Breakfast/Lunch tabs, weekday calendar buttons, week navigation, Today button, and Browse All Specials. Selected and expanded behavior is retained; hover applies only on hover-capable devices, and reduced-motion settings are respected.
 
 Production testing update: Drinks, Breakfast, and Lunch display horizontally at standard mobile widths (361px and wider); they stack at 360 CSS px or less for narrow viewport and zoom reflow. Hover states retained.
+
+Mobile tab fix: Drinks, Breakfast and Lunch remain in three equal columns at all mobile widths. CSS cache version updated to v21.
+
+User testing update: Mobile specials dates appear below headings; menu callouts are Arial Regular 13px with 1.5 line height. Cache versions updated.

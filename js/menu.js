@@ -252,8 +252,12 @@
         const section = document.createElement("section");
         section.className = "mobile-special-day" + (offset === 0 && !isWeekend ? " mobile-today" : "");
         const heading = document.createElement("h3");
-        heading.textContent = `${offset === 0 && !isWeekend ? "Today's Specials" : `${formatDate(date, { weekday: "long" })}’s Specials`} · ${formatDate(date, { weekday: "short", month: "short", day: "numeric" })}`;
+        heading.textContent = offset === 0 && !isWeekend ? "Today's Specials" : `${formatDate(date, { weekday: "long" })}’s Specials`;
         section.appendChild(heading);
+        const dateLine = document.createElement("p");
+        dateLine.className = "mobile-special-date";
+        dateLine.textContent = formatDate(date, { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+        section.appendChild(dateLine);
         const specials = specialsFor(date);
         if (!specials.length) {
           const message = document.createElement("p");
